@@ -1,0 +1,29 @@
+
+# 데이터 소스
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:mem:test'
+    username: sa
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+      generate-ddl: true
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+# H2 Console 설정
+h2:
+  console: # H2 DB를 웹에서 관리할 수 있는 기능
+    enabled: true           # H2 Console 사용 여부
+    path: /h2-console       # H2 Console 접속 주소
+  # JPA 설정
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace

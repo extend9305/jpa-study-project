@@ -2,6 +2,7 @@ package com.example.study.member.domain.item;
 
 import com.example.study.member.domain.Category;
 import com.example.study.member.domain.OrderItem;
+import com.example.study.member.exception.NotEnoughStockException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,20 @@ public abstract class Item {
     List<OrderItem> orderItems = new ArrayList<>();
     @ManyToMany(mappedBy = "items")
     List<Category> categories = new ArrayList<>();
+
+    //===비즈니스 로직==//
+
+    /**
+     * stock 증가
+     * @param quantity
+     */
+    public void addStock(int quantity){
+        this.stockQuantity += quantity;
+    }
+    public void removeStock(int quantity){
+        int resStock = this.stockQuantity - quantity;
+        if(resStock < 0){
+            throw new NotEnoughStockException("need more stock");
+        }
+    }
 }

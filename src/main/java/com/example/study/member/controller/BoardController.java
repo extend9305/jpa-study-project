@@ -15,7 +15,7 @@ public class BoardController {
     @RequestMapping("/save")
     public void save(){
         Board board = new Board();
-        board.setData("TEST");
+        //board.setData("TEST");
         boardRepository.save(board);
     }
 }
