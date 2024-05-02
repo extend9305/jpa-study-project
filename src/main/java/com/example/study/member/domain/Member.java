@@ -1,6 +1,7 @@
 package com.example.study.member.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,6 @@ public class Member {
     @GeneratedValue
     @Column(name = "membe_id")
     private Long id;
-    @Column(name = "NAME")
     private String name;
     @Embedded
     private Address address;

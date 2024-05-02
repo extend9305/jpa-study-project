@@ -8,6 +8,7 @@ import com.example.study.member.domain.item.Item;
 import com.example.study.member.repository.ItemRepository;
 import com.example.study.member.repository.MemberRepository;
 import com.example.study.member.repository.OrderRepositroy;
+import com.example.study.member.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,7 @@ public class OrderService {
     }
 
     //검색
-//    public List<Order> findOrders(OrderSearch orderSearch){
-//        return orderRepositroy.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch){
+        return orderRepositroy.findAll(orderSearch);
+    }
 }
