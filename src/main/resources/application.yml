@@ -10,13 +10,20 @@ spring:
     prefix: classpath:/templates/
   # 데이터 소스
   datasource:
-    driver-class-name: org.h2.Driver
-    url: 'jdbc:h2:tcp://localhost/~/test'
-    username: sa
+    hikari:
+      write:
+        jdbc-url: 'jdbc:h2:tcp://localhost/~/test'
+        username: sa
+        driver-class-name: org.h2.Driver
+      read:
+        jdbc-url: 'jdbc:h2:tcp://localhost/~/test2'
+        username: sa
+        password: '0000'
+        driver-class-name: org.h2.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
       generate-ddl: true
     properties:
       hibernate:
@@ -24,13 +31,13 @@ spring:
         format_sql: true
 
 # H2 Console 설정
-h2:
-  console: # H2 DB를 웹에서 관리할 수 있는 기능
-    enabled: true           # H2 Console 사용 여부
-    path: /h2-console       # H2 Console 접속 주소
-  # JPA 설정
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+#h2:
+#  console: # H2 DB를 웹에서 관리할 수 있는 기능
+#    enabled: true           # H2 Console 사용 여부
+#    path: /h2-console       # H2 Console 접속 주소
+#  # JPA 설정
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
 logging:
   level:
     org.hibernate.SQL: debug
