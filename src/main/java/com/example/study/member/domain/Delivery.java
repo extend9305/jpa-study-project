@@ -1,5 +1,6 @@
 package com.example.study.member.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
     @OneToOne(mappedBy = "delivery",fetch = LAZY)
+    @JsonIgnore
     private Order order;
 
 }

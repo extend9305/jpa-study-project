@@ -16,19 +16,24 @@ spring:
         username: sa
         driver-class-name: org.h2.Driver
       read:
-        jdbc-url: 'jdbc:h2:tcp://localhost/~/test2'
+        jdbc-url: 'jdbc:h2:tcp://localhost/~/test'
         username: sa
-        password: '0000'
+        #password: '1234'
         driver-class-name: org.h2.Driver
   jpa:
+    show-sql: true # 콘솔로그로 출력하려면
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
       generate-ddl: true
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        batch_fetch_style: PADDED # hibernate 6 부터 deprecated됨..
+        default_batch_fetch_size: 100
+        format_sql: true # SQL 포맷팅
+        highlight_sql: true # ANSI 코드에 색을 나타낸다
+        #use_sql_comments: true # SQL 내부에 /* */ 주석 추가
+
 
 # H2 Console 설정
 #h2:
@@ -41,4 +46,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    org.hibernate.type: trace
+    org.hibernate.orm.jdbc.bind: trace
